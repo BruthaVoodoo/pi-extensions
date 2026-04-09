@@ -1,0 +1,5 @@
+# Local pi extension loading directory — not tracked in git.
+# Extensions here are loaded by pi when working in this repo,
+# but the global install (~/.pi/agent/extensions/) already covers that.
+# Source of truth lives in the top-level extension folders.
+.pi/
