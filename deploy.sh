@@ -3,7 +3,7 @@
 # Run this when you're happy with an extension and want it available globally.
 
 GLOBAL_DIR="$HOME/.pi/agent/extensions"
-LOCAL_DIR="$(dirname "$0")/.pi/extensions"
+LOCAL_DIR="$(dirname "$0")/extensions"
 
 for ext in "$LOCAL_DIR"/*/; do
   name=$(basename "$ext")

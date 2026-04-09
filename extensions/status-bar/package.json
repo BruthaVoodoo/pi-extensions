@@ -1,0 +1,10 @@
+{
+  "name": "status-bar",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Powerline-style status bar for pi",
+  "pi": {
+    "extensions": ["./index.ts"],
+    "deploy": true
+  }
+}
