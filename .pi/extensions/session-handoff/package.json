@@ -1,8 +1,12 @@
 {
   "name": "session-handoff",
   "version": "0.1.0",
+  "type": "module",
   "description": "Extract session context, save a handoff doc to /handoff, and start a new focused session",
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": [
+      "./index.ts"
+    ],
+    "deploy": true
   }
 }

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "A pi extension that monitors and displays LLM context window usage",
   "pi": {
-    "extensions": ["./index.ts"]
+    "extensions": ["./index.ts"],
+    "deploy": true
   }
 }
