@@ -80,7 +80,8 @@ export type StatusLinePreset =
   | "nerd"
   | "ascii"
   | "focus"
-  | "custom";
+  | "custom"
+  | "vertical";
 
 // ─────────────────────────────────────────────────────────────
 // Per-segment options
@@ -102,6 +103,17 @@ export interface StatusLineSegmentOptions {
 }
 
 // ─────────────────────────────────────────────────────────────
+// Row layout
+// ─────────────────────────────────────────────────────────────
+
+export interface StatusLineRow {
+  /** Segments shown on the left side of the row. */
+  left: StatusLineSegmentId[];
+  /** Segments shown on the right side of the row, right-aligned. */
+  right?: StatusLineSegmentId[];
+}
+
+// ─────────────────────────────────────────────────────────────
 // Preset definition
 // ─────────────────────────────────────────────────────────────
 
@@ -109,6 +121,10 @@ export interface PresetDef {
   leftSegments: StatusLineSegmentId[];
   rightSegments: StatusLineSegmentId[];
   secondarySegments?: StatusLineSegmentId[];
+  /** Each inner array is one line, rendered top-to-bottom. Used by the vertical preset. */
+  rows?: StatusLineRow[];
+  /** Number of empty lines to insert between each row in a vertical layout. Default: 0. */
+  rowSpacing?: number;
   separator: StatusLineSeparatorStyle;
   segmentOptions?: StatusLineSegmentOptions;
   colors?: ColorScheme;

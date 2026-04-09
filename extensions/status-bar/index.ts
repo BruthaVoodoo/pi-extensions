@@ -352,7 +352,7 @@ export default function statusBar(pi: ExtensionAPI) {
 
         const result: string[] = [];
         const layout = getCachedLayout(width, ctx.ui.theme);
-        result.push(layout.topContent);
+        for (const line of layout.topLines) result.push(line);
         result.push(" " + bc("─".repeat(width - 2)));
 
         for (let i = 1; i < bottomIdx; i++) {

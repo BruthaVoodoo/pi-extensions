@@ -75,7 +75,7 @@ export const PRESETS: Record<StatusLinePreset, PresetDef> = {
     leftSegments: ["pi", "hostname", "model", "thinking", "session_name", "path", "git"],
     rightSegments: ["token_in", "token_out", "cache_read", "cost", "context_bar", "time_spent", "time", "extension_statuses"],
     separator: "powerline",
-    colors: DEFAULTS,
+    colors: { ...DEFAULTS, context: "#87d700" },
     segmentOptions: {
       model: { showThinkingLevel: false },
       path: { mode: "abbreviated", maxLength: 50 },
@@ -108,6 +108,26 @@ export const PRESETS: Record<StatusLinePreset, PresetDef> = {
       model: { showThinkingLevel: true },
       path: { mode: "abbreviated", maxLength: 40 },
       git: { showBranch: true, showStaged: true, showUnstaged: true, showUntracked: true },
+    },
+  },
+
+  // Vertical — four stacked rows: pi / location / model / stats
+  vertical: {
+    leftSegments: [],
+    rightSegments: [],
+    rows: [
+      { left: ["pi"] },
+      { left: ["time_spent", "time"], right: ["model", "thinking", "session_name"] },
+      { left: ["hostname", "path", "git"], right: ["token_in", "token_out", "cache_read", "cost", "context_bar"] },
+    ],
+    separator: "powerline-thin",
+    rowSpacing: 0,
+    colors: { ...DEFAULTS, context: "#87d700" },
+    segmentOptions: {
+      model: { showThinkingLevel: false },
+      path: { mode: "abbreviated", maxLength: 50 },
+      git: { showBranch: true, showStaged: true, showUnstaged: true, showUntracked: true },
+      time: { format: "24h", showSeconds: false },
     },
   },
 
