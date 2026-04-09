@@ -1,4 +1,4 @@
-import { complete, type Message } from "@mariozechner/pi-ai";
+import { complete, type Message, type Model } from "@mariozechner/pi-ai";
 import type { ExtensionAPI, ExtensionCommandContext } from "@mariozechner/pi-coding-agent";
 
 // ─────────────────────────────────────────────────────────────
@@ -139,10 +139,11 @@ function extractText(content: Array<{ type: string; text?: string }>): string {
 export async function extractContext(
   conversationText: string,
   goal: string,
+  model: Model<any>,
   ctx: ExtensionCommandContext,
   signal: AbortSignal,
 ): Promise<ExtractionData> {
-  const auth = await ctx.modelRegistry.getApiKeyAndHeaders(ctx.model!);
+  const auth = await ctx.modelRegistry.getApiKeyAndHeaders(model);
   if (!auth.ok || !auth.apiKey) {
     throw new Error(auth.ok ? `No API key for ${ctx.model!.provider}` : (auth as any).error);
   }
@@ -160,7 +161,7 @@ export async function extractContext(
 
   // ── First attempt ────────────────────────────────────────
   const response = await complete(
-    ctx.model!,
+    model,
     { systemPrompt: SYSTEM_PROMPT, messages: [userMessage] },
     { apiKey: auth.apiKey, headers: auth.headers, signal },
   );
@@ -195,7 +196,7 @@ export async function extractContext(
   };
 
   const retryResponse = await complete(
-    ctx.model!,
+    model,
     {
       systemPrompt: SYSTEM_PROMPT,
       messages: [userMessage, assistantMessage, retryUserMessage],
